@@ -70,11 +70,14 @@ function HomeScreen(props) {
   };
 
   var handleSubmitSignin = async () => {
-    const data = await fetch(`http://192.168.1.7:3000/sign-in`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`,
-    });
+    const data = await fetch(
+      `https://mighty-scrubland-93135.herokuapp.com/sign-in`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`,
+      }
+    );
 
     const body = await data.json();
 

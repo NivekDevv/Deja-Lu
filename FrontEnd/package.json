@@ -9,7 +9,6 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
-  "proxy": "http://192.168.1.7:3000",
   "dependencies": {
     "@expo-google-fonts/dancing-script": "^0.2.2",
     "@freakycoder/react-native-bounceable": "^0.2.5",
