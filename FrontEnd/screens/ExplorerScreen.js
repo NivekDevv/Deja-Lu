@@ -54,9 +54,7 @@ const ExplorerScreen = (props, navigation) => {
       if (data) {
         async function loadBooks() {
           var body = await fetch(
-            `https://mighty-scrubland-93135.herokuapp.com/my-books?token=${JSON.parse(
-              data
-            )}`
+            `http://192.168.1.7:3000/my-books?token=${JSON.parse(data)}`
           );
           findBooks = await body.json();
           setBooksList(findBooks.books);
@@ -76,9 +74,7 @@ const ExplorerScreen = (props, navigation) => {
       if (data) {
         async function loadUser() {
           var user = await fetch(
-            `https://mighty-scrubland-93135.herokuapp.com/getUser?token=${JSON.parse(
-              data
-            )}`
+            `http://192.168.1.7:3000/getUser?token=${JSON.parse(data)}`
           );
           console.log(data, "UTILISATEUR PAGE EXPLO");
         }
@@ -92,9 +88,7 @@ const ExplorerScreen = (props, navigation) => {
       if (data) {
         async function loadBooks() {
           var body = await fetch(
-            `https://mighty-scrubland-93135.herokuapp.com/my-books?token=${JSON.parse(
-              data
-            )}`
+            `http://192.168.1.7:3000/my-books?token=${JSON.parse(data)}`
           );
           findBooks = await body.json();
           setBooksList(findBooks.books);
