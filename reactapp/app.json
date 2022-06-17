@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "deja-lu",
+    "slug": "deja-lu",
+    "privacy":"public",
+    "description":"Deja-Lu permet de répertorier tous nos livres !",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/booksicon.png",
+    "splash": {
+      "image": "./assets/booksicon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
