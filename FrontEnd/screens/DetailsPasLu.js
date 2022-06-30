@@ -56,7 +56,7 @@ const DetailsPasLu = ({ route, navigation, props }) => {
 
   var saveBookInfosDejaLu = async () => {
     var response = await fetch(
-      `http://192.168.1.7:3000/change-status-lu?bookId=${bookId}`,
+      `https://backend-dejalu.herokuapp.com/change-status-lu?bookId=${bookId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },

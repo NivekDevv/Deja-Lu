@@ -41,7 +41,9 @@ function MyBooksScreen(props) {
       if (data) {
         async function loadUser() {
           var findBooks = await fetch(
-            `http://192.168.1.7:3000/my-books?token=${JSON.parse(data)}`
+            `https://backend-dejalu.herokuapp.com/my-books?token=${JSON.parse(
+              data
+            )}`
           );
           books = await findBooks.json();
           console.log(books.books, "les books de l'utilisateur");
@@ -66,7 +68,9 @@ function MyBooksScreen(props) {
       if (data) {
         async function loadUser() {
           var findBooks = await fetch(
-            `http://192.168.1.7:3000/my-books?token=${JSON.parse(data)}`
+            `https://backend-dejalu.herokuapp.com/my-books?token=${JSON.parse(
+              data
+            )}`
           );
           books = await findBooks.json();
           console.log(books.books, "les books de l'utilisateur");
@@ -119,6 +123,7 @@ function MyBooksScreen(props) {
                 ...FONTS.h1,
                 color: COLORS.white,
                 marginLeft: "23%",
+                marginTop: 10,
               }}
             >
               My Books List
@@ -143,7 +148,7 @@ function MyBooksScreen(props) {
             marginLeft: 7,
             marginRight: SIZES.radius,
           }}
-          onPress={(item) => bookClicked(item)}
+          onPress={() => bookClicked(item)}
         >
           {/* Book Cover */}
           <Image
@@ -223,7 +228,7 @@ function MyBooksScreen(props) {
               marginLeft: 7,
               marginRight: SIZES.radius,
             }}
-            onPress={(item) => bookClicked(item)}
+            onPress={() => bookClicked(item)}
           >
             {/* Book Cover */}
             <Image
@@ -305,7 +310,7 @@ function MyBooksScreen(props) {
               marginLeft: 7,
               marginRight: SIZES.radius,
             }}
-            onPress={(item) => bookClicked(item)}
+            onPress={() => bookClicked(item)}
           >
             {/* Book Cover */}
             <Image
@@ -356,6 +361,7 @@ function MyBooksScreen(props) {
         </View>
 
         {/* Books */}
+
         <View style={{ flex: 1, marginTop: SIZES.padding }}>
           <FlatList
             data={myBooks.sort((a, b) => b.date > a.date)}
@@ -385,7 +391,7 @@ function MyBooksScreen(props) {
               marginLeft: 7,
               marginRight: SIZES.radius,
             }}
-            onPress={(item) => bookClicked(item)}
+            onPress={() => bookClicked(item)}
           >
             {/* Book Cover */}
             <Image

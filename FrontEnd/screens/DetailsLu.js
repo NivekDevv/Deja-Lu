@@ -69,7 +69,7 @@ const DetailsLu = ({ route, navigation, props }) => {
 
   var saveBookInfosDonne = async () => {
     var response = await fetch(
-      `http://192.168.1.7:3000/change-status-donne?bookId=${bookId}`,
+      `https://backend-dejalu.herokuapp.com/change-status-donne?bookId=${bookId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -85,7 +85,7 @@ const DetailsLu = ({ route, navigation, props }) => {
 
   var saveBookInfosDelete = async () => {
     var response = await fetch(
-      `http://192.168.1.7:3000/delete-book-lu?bookId=${bookId}`,
+      `https://backend-dejalu.herokuapp.com/delete-book-lu?bookId=${bookId}`,
       {
         method: "DELETE",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -351,7 +351,7 @@ const DetailsLu = ({ route, navigation, props }) => {
           style={{
             backgroundColor: COLORS.lightRed,
             marginHorizontal: SIZES.base,
-            padding: "4%",
+            paddingHorizontal: "3%",
             marginVertical: SIZES.base,
             borderRadius: SIZES.radius,
             alignItems: "center",

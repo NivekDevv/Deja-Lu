@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { IconButton, Colors } from "react-native-paper";
+import { IconButton, Colors, TextInput } from "react-native-paper";
 import { GoogleBookSearch } from "react-native-google-books";
+import SearchBar from "react-native-dynamic-search-bar";
 import {
   SafeAreaView,
   StyleSheet,
@@ -54,7 +55,9 @@ const ExplorerScreen = (props, navigation) => {
       if (data) {
         async function loadBooks() {
           var body = await fetch(
-            `http://192.168.1.7:3000/my-books?token=${JSON.parse(data)}`
+            `https://backend-dejalu.herokuapp.com/my-books?token=${JSON.parse(
+              data
+            )}`
           );
           findBooks = await body.json();
           setBooksList(findBooks.books);
@@ -65,16 +68,39 @@ const ExplorerScreen = (props, navigation) => {
     wait(1000).then(() => setRefreshing(false));
   };
 
+  /*  useEffect(() => {
+    const findBooks = async () => {
+      const data = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=j+k+rowling&key%3D=AIzaSyBsEkyjEORPuQYR2d8CbqL2GQv8mnDNPLk&langRestrict=fr`
+      );
+      const body = await data.json();
+      console.log(body, "OUAIS OUAIS OUAIS LAPIII");
+    };
+
+    findBooks();
+  }, []); */
+
+  /*  const saveAPI = (text) => {
+    setMySearch(text);
+    props.navigation.navigate("MainBottomBar", {
+      screen: "MyProfile",
+      text: mySearch,
+    });
+  }; */
+
   const [profile, setProfile] = React.useState(profileData);
 
   const [booksList, setBooksList] = useState([]);
+  const [mySearch, setMySearch] = useState("");
 
   useEffect(() => {
     AsyncStorage.getItem("token", function (error, data) {
       if (data) {
         async function loadUser() {
           var user = await fetch(
-            `http://192.168.1.7:3000/getUser?token=${JSON.parse(data)}`
+            `https://backend-dejalu.herokuapp.com/getUser?token=${JSON.parse(
+              data
+            )}`
           );
           console.log(data, "UTILISATEUR PAGE EXPLO");
         }
@@ -88,7 +114,9 @@ const ExplorerScreen = (props, navigation) => {
       if (data) {
         async function loadBooks() {
           var body = await fetch(
-            `http://192.168.1.7:3000/my-books?token=${JSON.parse(data)}`
+            `https://backend-dejalu.herokuapp.com/my-books?token=${JSON.parse(
+              data
+            )}`
           );
           findBooks = await body.json();
           setBooksList(findBooks.books);
@@ -195,7 +223,10 @@ const ExplorerScreen = (props, navigation) => {
         {/* Books */}
         <View style={{ flex: 1, marginTop: SIZES.padding }}>
           <FlatList
-            data={booksList.sort((a, b) => a.title.localeCompare(b.title))}
+            data={
+              booksList.sort((a, b) => a.title.localeCompare(b.title)) &&
+              booksList.slice(0, 7)
+            }
             renderItem={renderItem}
             keyExtractor={(item) => `${item._id}`}
             horizontal
@@ -209,7 +240,16 @@ const ExplorerScreen = (props, navigation) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.black }}>
       {/* Header Section */}
+
       <View style={{ height: 120 }}>{renderHeader(profile)}</View>
+      <GoogleBookSearch
+        apikey={"AIzaSyBsEkyjEORPuQYR2d8CbqL2GQv8mnDNPLk"}
+        onResultPress={(book) =>
+          props.navigation.navigate("BookDetail", {
+            book: book,
+          })
+        }
+      />
 
       {/* Body Section */}
       <ScrollView
@@ -219,16 +259,6 @@ const ExplorerScreen = (props, navigation) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <GoogleBookSearch
-          apikey={"AIzaSyBDD1aIpOUsOGGJfsS9Nv8qtA5UghTLqTU"}
-          interval={100}
-          limit={7}
-          onResultPress={(book) =>
-            props.navigation.navigate("BookDetail", {
-              book: book,
-            })
-          }
-        />
         {/* Books Section */}
         <View style={{ marginTop: "10%" }}>
           {renderMyBookSection(booksList)}
@@ -240,7 +270,7 @@ const ExplorerScreen = (props, navigation) => {
         </View>
         <View style={styles.centeredView}>
           <Pressable
-            style={[styles.button1, styles.buttonOpen]}
+            style={{ backgroundColor: "#4B230B" }}
             onPress={() =>
               props.navigation.navigate("MainBottomBar", {
                 screen: "MyProfile",
@@ -250,7 +280,7 @@ const ExplorerScreen = (props, navigation) => {
             <Text
               style={{
                 color: COLORS.white,
-                marginLeft: "10%",
+                padding: 15,
               }}
             >
               Détails

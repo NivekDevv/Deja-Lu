@@ -48,7 +48,7 @@ function HomeScreen(props) {
 
   const [pseudoIsSubmited, setPseudoIsSubmited] = useState(false);
   var handleSubmitSignup = async () => {
-    const data = await fetch(`http://192.168.1.7:3000/sign-up`, {
+    const data = await fetch(`https://backend-dejalu.herokuapp.com/sign-up`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `usernameFromFront=${signUpUsername}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}`,
@@ -70,7 +70,7 @@ function HomeScreen(props) {
   };
 
   var handleSubmitSignin = async () => {
-    const data = await fetch(`http://192.168.1.7:3000/sign-in`, {
+    const data = await fetch(`https://backend-dejalu.herokuapp.com/sign-in`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`,
@@ -121,7 +121,9 @@ function HomeScreen(props) {
       if (data) {
         async function loadUser() {
           var user = await fetch(
-            `http://192.168.1.7:3000/getUser?token=${JSON.parse(data)}`
+            `https://backend-dejalu.herokuapp.com/getUser?token=${JSON.parse(
+              data
+            )}`
           );
           user = await user.json();
           console.log(user, "oui ouioui");

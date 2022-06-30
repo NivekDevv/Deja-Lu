@@ -91,7 +91,7 @@ const DetailsAllList = ({ route, navigation, props }) => {
 
   var saveBookInfosDelete = async () => {
     var response = await fetch(
-      `http://192.168.1.7:3000/delete-book-lu?bookId=${bookId}`,
+      `https://backend-dejalu.herokuapp.com:3000/delete-book-lu?bookId=${bookId}`,
       {
         method: "DELETE",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },

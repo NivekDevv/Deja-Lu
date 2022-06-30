@@ -45,16 +45,22 @@ const BookDetail = ({ route, navigation, props }) => {
     let { book } = route.params;
     setBook(book);
     setTitle(book.title);
-    setCover(book.thumbnail);
+    if (book.thumbnail) {
+      setCover(book.thumbnail);
+    } else {
+      setCover("https://bibulyon.hypotheses.org/files/2015/08/7_maroquin.png");
+    }
     setDescription(book.raw.volumeInfo.description);
     setAuthor(book.raw.volumeInfo.authors);
-    console.log(book.raw.volumeInfo.authors, "<---- C LA DESCRIPTION");
+    console.log(book, "<---- C LA DESCRIPTION");
   }, [book]);
 
   var saveBookInfosDejaLu = async () => {
     AsyncStorage.getItem("token", async function (error, data) {
       var response = await fetch(
-        `http://192.168.1.7:3000/new-book-deja-lu?token=${JSON.parse(data)}`,
+        `https://backend-dejalu.herokuapp.com/new-book-deja-lu?token=${JSON.parse(
+          data
+        )}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -75,7 +81,9 @@ const BookDetail = ({ route, navigation, props }) => {
   var saveBookInfosPasLu = async () => {
     AsyncStorage.getItem("token", async function (error, data) {
       var response = await fetch(
-        `http://192.168.1.7:3000/new-book-pas-lu?token=${JSON.parse(data)}`,
+        `https://backend-dejalu.herokuapp.com/new-book-pas-lu?token=${JSON.parse(
+          data
+        )}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -97,7 +105,7 @@ const BookDetail = ({ route, navigation, props }) => {
     return (
       <View style={{ flex: 1 }}>
         <ImageBackground
-          source={{ uri: book.thumbnail }}
+          source={{ uri: cover }}
           resizeMode="cover"
           blurRadius={1}
           style={{
@@ -178,7 +186,7 @@ const BookDetail = ({ route, navigation, props }) => {
           }}
         >
           <Image
-            source={{ uri: book.thumbnail }}
+            source={{ uri: cover }}
             resizeMode="contain"
             style={{
               flex: 1,
@@ -350,7 +358,7 @@ const BookDetail = ({ route, navigation, props }) => {
           style={{
             backgroundColor: COLORS.lightRed,
             marginHorizontal: SIZES.base,
-            padding: "4%",
+            paddingHorizontal: "3%",
             marginVertical: SIZES.base,
             borderRadius: SIZES.radius,
             alignItems: "center",

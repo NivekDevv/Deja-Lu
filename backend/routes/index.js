@@ -9,6 +9,11 @@ var booksModel = require("../models/books");
 
 /* GET home page. */
 
+router.get("/", (req, res) => {
+  console.log("Responding to root route");
+  res.send("SALUT A TOUS LES AMISss");
+});
+
 router.post("/sign-up", async function (req, res, next) {
   var error = [];
   var result = false;
