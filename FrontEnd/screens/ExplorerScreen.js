@@ -244,6 +244,7 @@ const ExplorerScreen = (props, navigation) => {
       <View style={{ height: 120 }}>{renderHeader(profile)}</View>
       <GoogleBookSearch
         apikey={"AIzaSyBsEkyjEORPuQYR2d8CbqL2GQv8mnDNPLk"}
+        interval={100}
         onResultPress={(book) =>
           props.navigation.navigate("BookDetail", {
             book: book,
