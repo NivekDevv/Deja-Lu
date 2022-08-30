@@ -53,22 +53,6 @@ const DetailsAllList = ({ route, navigation, props }) => {
     console.log(bookAllClicked.dejalu, "<---- C MON ITEM");
   }, []);
 
-  /*   useEffect(() => {
-    AsyncStorage.getItem("token", function (error, data) {
-      if (data) {
-        async function loadBooksLu() {
-          var findBooks = await fetch(
-            `http://192.168.1.7:3000/my-booksLu?token=${JSON.parse(data)}`
-          );
-          books = await findBooks.json();
-          console.log(books.booksLu, "le book LU de l'utilisateur");
-          setMyBooks(books.booksLu);
-        }
-        loadBooksLu();
-      }
-    });
-  }, []); */
-
   var myStatus = () => {
     if (bookStatus === "true") {
       return <Text style={{ ...FONTS.body4, color: COLORS.white }}>Oui</Text>;

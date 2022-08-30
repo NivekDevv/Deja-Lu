@@ -40,7 +40,7 @@ const BookDetail = ({ route, navigation, props }) => {
   const [date, setDate] = useState(new Date());
 
   const indicator = new Animated.Value(0);
-
+  //On récupere et stocks les infos du livre
   React.useEffect(() => {
     let { book } = route.params;
     setBook(book);
@@ -54,7 +54,7 @@ const BookDetail = ({ route, navigation, props }) => {
     setAuthor(book.raw.volumeInfo.authors);
     console.log(book, "<---- C LA DESCRIPTION");
   }, [book]);
-
+  //fonction pour enregistrer livre avec le tag "deja-lu"
   var saveBookInfosDejaLu = async () => {
     AsyncStorage.getItem("token", async function (error, data) {
       var response = await fetch(
@@ -77,6 +77,8 @@ const BookDetail = ({ route, navigation, props }) => {
       }
     });
   };
+
+  // Enregistrer book pas lu en BDD
 
   var saveBookInfosPasLu = async () => {
     AsyncStorage.getItem("token", async function (error, data) {
@@ -337,9 +339,7 @@ const BookDetail = ({ route, navigation, props }) => {
   function renderBottomButton() {
     return (
       <View style={{ flex: 1, flexDirection: "row" }}>
-        {/* Bookmark */}
-
-        {/* Start Reading */}
+        {/* Button Déjà lu */}
         <TouchableOpacity
           style={{
             flex: 1,
@@ -354,6 +354,7 @@ const BookDetail = ({ route, navigation, props }) => {
         >
           <Text style={{ ...FONTS.h3, color: COLORS.white }}>Déjà lu </Text>
         </TouchableOpacity>
+        {/* Button Pas lu */}
         <TouchableOpacity
           style={{
             backgroundColor: COLORS.lightRed,

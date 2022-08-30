@@ -68,30 +68,9 @@ const ExplorerScreen = (props, navigation) => {
     wait(1000).then(() => setRefreshing(false));
   };
 
-  /*  useEffect(() => {
-    const findBooks = async () => {
-      const data = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=j+k+rowling&key%3D=AIzaSyBsEkyjEORPuQYR2d8CbqL2GQv8mnDNPLk&langRestrict=fr`
-      );
-      const body = await data.json();
-      console.log(body, "OUAIS OUAIS OUAIS LAPIII");
-    };
-
-    findBooks();
-  }, []); */
-
-  /*  const saveAPI = (text) => {
-    setMySearch(text);
-    props.navigation.navigate("MainBottomBar", {
-      screen: "MyProfile",
-      text: mySearch,
-    });
-  }; */
-
   const [profile, setProfile] = React.useState(profileData);
 
   const [booksList, setBooksList] = useState([]);
-  const [mySearch, setMySearch] = useState("");
 
   useEffect(() => {
     AsyncStorage.getItem("token", function (error, data) {

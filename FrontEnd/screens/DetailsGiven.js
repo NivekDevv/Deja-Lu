@@ -51,38 +51,6 @@ const DetailsGiven = ({ route, navigation, props }) => {
     console.log(bookLuGiven.cover, "<---- C MON ITEM");
   }, []);
 
-  /*   useEffect(() => {
-    AsyncStorage.getItem("token", function (error, data) {
-      if (data) {
-        async function loadBooksLu() {
-          var findBooks = await fetch(
-            `http://192.168.1.7:3000/my-booksLu?token=${JSON.parse(data)}`
-          );
-          books = await findBooks.json();
-          console.log(books.booksLu, "le book LU de l'utilisateur");
-          setMyBooks(books.booksLu);
-        }
-        loadBooksLu();
-      }
-    });
-  }, []); */
-
-  var saveBookInfosDonne = async () => {
-    var response = await fetch(
-      `https://backend-dejalu.herokuapp.com/change-status-donne?bookId=${bookId}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      }
-    );
-    var resultats = await response.json();
-    console.log(resultats, "tessssst Changement de status");
-    alert("Livre désormais donné");
-    navigation.navigate("MainBottomBar", {
-      screen: "MyBooks",
-    });
-  };
-
   var saveBookInfosDelete = async () => {
     var response = await fetch(
       `https://backend-dejalu.herokuapp.com/delete-book-lu?bookId=${bookId}`,
